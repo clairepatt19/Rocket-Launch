@@ -7,7 +7,14 @@ window.addEventListener("load", function(){
 	const abortMission = document.getElementById("missionAbort");
 	const background = document.getElementById("shuttleBackground");
 	const rocketPos = document.getElementById("rocket");
-
+	rocketPos.style.position= 'absolute'; 
+    rocketPos.style.left = '0px'; 
+    rocketPos.style.bottom = '0px';
+	let up = this.document.getElementById('up');
+	let down = this.document.getElementById('down');
+	let left = this.document.getElementById('left');
+	let right = this.document.getElementById('right');
+		
 	takingOff.addEventListener("click", function()
 	{
 		confirmation=window.confirm("Confirm that the shuttle is ready for takeoff.");
@@ -34,7 +41,7 @@ window.addEventListener("load", function(){
 		shuttleHeight.innerHTML = 0;
 	});
 
-abortMission.addEventListener("click", function()
+	abortMission.addEventListener("click", function()
  	{
 		let confirmation = window.confirm("Confirm that you want to abort the mission.");
 		if (confirmation == true)
@@ -49,5 +56,27 @@ abortMission.addEventListener("click", function()
 			background.style.background = "green";
 			shuttleHeight.innerHTML = 0;
 		}
+	});
+	  
+    right.addEventListener("click", function () {
+        movement = parseInt(rocketPos.style.left) + 10 + 'px';
+        rocketPos.style.left = movement;
+    });
+    
+    left.addEventListener("click", function () {
+        movement = parseInt(rocketPos.style.left) - 10 +'px';
+        rocketPos.style.left = movement;
+    });
+    
+    down.addEventListener("click", function () {
+        movement = parseInt(rocketPos.style.bottom) - 10 + 'px';
+        rocketPos.style.bottom = movement;
+        shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) - 10000;
+    });
+    
+    up.addEventListener("click", function () {
+        movement = parseInt(rocketPos.style.bottom) + 10 + 'px';
+        rocketPos.style.bottom = movement;
+        shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) + 10000;
 	});
 });
